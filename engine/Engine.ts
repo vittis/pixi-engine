@@ -4,7 +4,7 @@ class Engine {
 
   constructor(firstScene : Scene) {
     this.currentScene = firstScene;
-    this.currentScene.init();
+    this.currentScene.load();
     this.currentScene.enter();
   }
 
@@ -12,11 +12,12 @@ class Engine {
     this.previousScene = this.currentScene;
     this.currentScene = scene;
     this.previousScene.exit();
+    if (this.currentScene.hasLoaded == false)
+      this.currentScene.load();
     this.currentScene.enter();
   }
 
   gameloop = () => {
-    //if (this.currentScene == null) return;
     this.currentScene.update();
   }
 

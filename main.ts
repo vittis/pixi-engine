@@ -7,13 +7,9 @@ var Container = PIXI.Container,
     Sprite = PIXI.Sprite;
 
 var stage = new Container();
-var stage2 = new Container();
-var renderer = autoDetectRenderer(740, 512);
-document.body.appendChild(renderer.view);
 
-loader
-  .add("images/cat.png")
-  .load(setup);
+var renderer = new PIXI.CanvasRenderer(740, 512);
+document.body.appendChild(renderer.view);
 
 var gameScene = new GameScene();
 var menuScene = new MenuScene();
@@ -41,27 +37,12 @@ var options = {
 declare var Smoothie:any;
 var smoothie = new Smoothie(options);
 //-----------------------------------------
-var rectangle : PIXI.Graphics;
-var cat : PIXI.Sprite;
-//setup()
+
+setup();
+var t :number = 0;
+
 function setup() {
     renderer.backgroundColor = 0x061639;
 
-    rectangle = new PIXI.Graphics();
-    rectangle.lineStyle(4, 0xFF3300, 1);
-    rectangle.beginFill(0x66CCFF);
-    rectangle.drawRect(0, 0, 64, 64);
-    rectangle.endFill();
-    rectangle.x = 170;
-    rectangle.y = 170;
-    gameScene.addChild(rectangle);
-
-    cat = new Sprite(resources["images/cat.png"].texture);
-    cat.x = 50;
-    cat.y = 50;
-    menuScene.addChild(cat);
-    //renderer.render(stage);
-
     smoothie.start();
 }
-var t :number = 0;
