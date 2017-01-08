@@ -1,48 +1,29 @@
-var Container = PIXI.Container,
+/*var Container = PIXI.Container,
     autoDetectRenderer = PIXI.autoDetectRenderer,
     loader = PIXI.loader,
     resources = PIXI.loader.resources,
     TextureCache = PIXI.utils.TextureCache,
     Texture = PIXI.Texture,
     Sprite = PIXI.Sprite;
+*/
 
-var stage = new Container();
 
-var renderer = new PIXI.CanvasRenderer(740, 512);
-document.body.appendChild(renderer.view);
-
+//cenas
 var gameScene = new GameScene();
 var menuScene = new MenuScene();
-stage.addChild(gameScene, menuScene);
 
-var engine = new Engine(gameScene);
+var screenWidth=800, screenHeight=600;
 
-var options = {
-  engine: PIXI,
-  renderer: renderer,
-  root: stage,
-  update: engine.gameloop.bind(this),
-  interpolate: true,
-  fps: 30,
-  renderFps: undefined,
-  properties: {
-    position: true,
-    rotation: true,
-    size: false,
-    scale: false,
-    alpha: false,
-    tile: false
-  }
-}
-declare var Smoothie:any;
-var smoothie = new Smoothie(options);
-//-----------------------------------------
+declare var Bump : any;
+var b;
 
-setup();
-var t :number = 0;
+function Start(options) {
+    //renderer.backgroundColor = 0x061639;
 
-function setup() {
-    renderer.backgroundColor = 0x061639;
+    stage.addChild(gameScene, menuScene);
 
+    b = new Bump(PIXI);
+
+    smoothie = new Smoothie(options);
     smoothie.start();
 }

@@ -7,38 +7,31 @@ function loadou() {
 class MenuScene extends Scene {
 
   init() : void {
-    super.init();
-    explorer = new Sprite(resources["images/explorer.png"].texture);
+    explorer = new PIXI.Sprite(PIXI.loader.resources["images/explorer.png"].texture);
     explorer.x = 150;
     explorer.y = 50;
     menuScene.addChild(explorer);
 
-
+    super.init();
   }
 
   load() : void {
-    loader
+    PIXI.loader
       .add("images/explorer.png")
       .load(this.init.bind(this));
   }
 
   enter() : void {
-    console.log("enter menuscene");
+    if (!this.hasLoaded) return;
     this.visible = true;
 
   }
   update() : void {
-    if (this.hasLoaded) {
-      t++;
-      if (t > 200) {
-        t=0;
-        engine.switch(gameScene);
-      }
-      
-    }
+    if (!this.hasLoaded) return;
+
+    
   }
   exit() : void {
-    console.log("exit menuscene");
     this.visible = false;
   }
 }

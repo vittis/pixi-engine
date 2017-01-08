@@ -3,10 +3,12 @@ abstract class Scene extends PIXI.Container{
     public hasLoaded : boolean = false;
     init(): void {
       this.hasLoaded = true;
-      console.log("init scene");
+      this.enter();
     }
     abstract load(): void;
-    abstract enter(): void;
-    abstract update(): void;
+    enter(): void {
+    }
+    update(): void {
+    }
     abstract exit(): void;
 }
